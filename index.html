@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="めぐとおのゆーだけの青森旅行デジタルパンフレット" />
+    <title>めぐとおのゆーどこかにビューン デジタルパンフレットIN青森</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800;900&family=Yomogi&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="password-gate" id="passwordGate" aria-live="polite">
+      <div class="gate-card">
+        <div class="gate-badge">🔐 ふたりだけの秘密</div>
+        <h1>青森パンフレットへようこそ</h1>
+        <p>合言葉は「付き合った日 + 次の旅行の出発日」の8桁だよ。</p>
+        <form id="passwordForm" class="password-form">
+          <label for="passwordInput">パスワード</label>
+          <input id="passwordInput" name="password" type="password" inputmode="numeric" autocomplete="current-password" placeholder="例：01010202" maxlength="8" required />
+          <button type="submit">ひみつの旅を開く</button>
+          <p class="error" id="passwordError" role="alert"></p>
+        </form>
+      </div>
+    </div>
+
+    <main class="site-shell is-locked" id="siteShell">
+      <section class="page hero-page is-active" id="page-hero" data-page="0">
+        <div class="floating-icons" aria-hidden="true">
+          <span>🍎</span><span>🌊</span><span>🐶</span><span>🏮</span><span>🍶</span><span>🚄</span>
+        </div>
+        <div class="hero-content reveal">
+          <p class="eyebrow">Private Aomori Digital Brochure</p>
+          <h1>めぐとおのゆー<br /><span>どこかにビューン</span><br />デジタルパンフレット<br class="sp" />IN青森</h1>
+          <p class="hero-copy">のっけ丼、奥入瀬、十和田湖の光、縄文、アート、ねぶた、地酒。ふたりだけの週末を、かわいく・見やすく・動く旅しおりにまとめたよ。</p>
+          <div class="hero-actions">
+            <button class="primary" data-go="1">旅程を見る</button>
+            <a class="ghost" href="#links" data-go="3">公式リンク集</a>
+          </div>
+        </div>
+        <div class="aomori-illustration reveal delay-1" aria-label="青森のかわいいイラスト">
+          <div class="apple-orbit"><span>🍎</span><span>🍏</span><span>🍎</span></div>
+          <div class="mountain"></div>
+          <div class="lake"></div>
+          <div class="nebuta-face">ねぶた<br />L♥VE</div>
+          <div class="dog">🐕‍🦺</div>
+        </div>
+      </section>
+
+      <section class="page itinerary-page" id="page-day1" data-page="1">
+        <div class="page-heading reveal">
+          <p class="eyebrow">Day 1 / 2026.06.13 SAT</p>
+          <h2>🚗 のっけ丼と奥入瀬、夜は湖水まつり</h2>
+          <p>新青森から青森駅へ。海鮮ランチで元気を満タンにして、緑の高原と渓流を抜け、夜は十和田湖のきらめきへ。</p>
+        </div>
+        <div class="timeline" id="day1Timeline"></div>
+      </section>
+
+      <section class="page itinerary-page" id="page-day2" data-page="2">
+        <div class="page-heading reveal">
+          <p class="eyebrow">Day 2 / 2026.06.14 SUN</p>
+          <h2>🚌 アート・歴史・地酒でしめる青森</h2>
+          <p>朝はホテルを出て、縄文とアートを満喫。レンタカー返却後は、ふたりで地酒乾杯して、駅弁と一緒に東京へ。</p>
+        </div>
+        <div class="timeline" id="day2Timeline"></div>
+      </section>
+
+      <section class="page map-page" id="page-links" data-page="3">
+        <div class="page-heading reveal" id="links">
+          <p class="eyebrow">Smart Links & Tips</p>
+          <h2>📍 公式HPリンクと旅のメモ</h2>
+          <p>各スポットの最新営業時間・料金・交通情報は当日までに公式サイトで確認してね。予定は <code>app.js</code> のデータを直せばすぐ更新できる設計。</p>
+        </div>
+        <div class="link-grid" id="linkGrid"></div>
+        <div class="tech-card reveal">
+          <h3>✨ 高度なITっぽい仕掛け</h3>
+          <ul>
+            <li>パスワードゲートでふたりだけの秘密サイト化</li>
+            <li>ページ推移・スクロール連動アニメーション・動く青森イラスト</li>
+            <li>旅程やリンクをJavaScriptの設定データで一元管理</li>
+            <li>スマホで見やすいレスポンシブデジタルパンフレット</li>
+          </ul>
+        </div>
+      </section>
+
+      <nav class="pager" aria-label="ページ移動">
+        <button id="prevPage" aria-label="前のページ">←</button>
+        <div class="dots" id="pageDots"></div>
+        <button id="nextPage" aria-label="次のページ">→</button>
+      </nav>
+    </main>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
