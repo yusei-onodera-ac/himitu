@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="めぐとおのゆーだけの青森旅行デジタルパンフレット" />
+    <meta name="theme-color" content="#4ea8de" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="青森ビューン" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="icons/icon-192.svg" />
+    <title>めぐとおのゆーどこかにビューン デジタルパンフレットIN青森</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800;900&family=Yomogi&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas class="magic-canvas" id="magicCanvas" aria-hidden="true"></canvas>
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+    <div class="password-gate" id="passwordGate" aria-live="polite">
+      <div class="gate-card">
+        <div class="gate-badge">🔐 ふたりだけの秘密</div>
+        <h1>青森パンフレットへようこそ</h1>
+        <p>合言葉は「付き合った日 + 次の旅行の出発日」の8桁だよ。</p>
+        <form id="passwordForm" class="password-form">
+          <label for="passwordInput">パスワード</label>
+          <input id="passwordInput" name="password" type="password" inputmode="numeric" autocomplete="current-password" placeholder="例：01010202" maxlength="8" required />
+          <button type="submit">ひみつの旅を開く</button>
+          <p class="error" id="passwordError" role="alert"></p>
+        </form>
+      </div>
+    </div>
+
+    <aside class="install-panel" id="installPanel" hidden>
+      <div>
+        <strong>📱 スマホのホームに追加しよ</strong>
+        <p id="installHelp">ログイン成功！この旅しおりをWebアプリとしてホーム画面に置けるよ。</p>
+      </div>
+      <div class="install-actions">
+        <button class="primary" id="installAppButton" type="button">ホームに追加</button>
+        <button class="ghost" id="dismissInstallButton" type="button">あとで</button>
+      </div>
+    </aside>
+
+    <main class="site-shell is-locked" id="siteShell">
+      <div class="route-progress" aria-hidden="true"><span id="routeProgressBar"></span></div>
+
+      <section class="page hero-page is-active" id="page-hero" data-page="0">
+        <div class="floating-icons" aria-hidden="true">
+          <span>🍎</span><span>🌊</span><span>🐶</span><span>🏮</span><span>🍶</span><span>🚄</span><span>✨</span><span>💕</span>
+        </div>
+        <div class="hero-content reveal">
+          <p class="eyebrow">Private Aomori Digital Brochure</p>
+          <h1 class="hero-title" aria-label="めぐとおのゆーどこかにビューン デジタルパンフレットIN青森">
+            <span>めぐとおのゆー</span>
+            <span class="blue">どこかにビューン</span>
+            <span>デジタルパンフレット</span>
+            <span>IN青森</span>
+          </h1>
+          <p class="hero-copy">のっけ丼、奥入瀬、十和田湖の光、縄文、アート、ねぶた、地酒。ふたりだけの週末を、かわいく・見やすく・本気の動く旅しおりにまとめたよ。</p>
+          <div class="hero-actions">
+            <button class="primary magnetic" data-go="1">見どころを見る</button>
+            <button class="ghost magnetic" data-go="4">青森MAP</button>
+            <a class="ghost magnetic" href="#links" data-go="5">公式リンク集</a>
+          </div>
+        </div>
+        <div class="aomori-illustration reveal delay-1" id="tiltCard" aria-label="青森のかわいいイラスト">
+          <div class="aurora"></div>
+          <div class="apple-orbit"><span>🍎</span><span>🍏</span><span>🍎</span></div>
+          <div class="cloud cloud-1"></div>
+          <div class="cloud cloud-2"></div>
+          <div class="mountain mountain-left"></div>
+          <div class="mountain mountain-right"></div>
+          <div class="route-line"></div>
+          <div class="train">🚄</div>
+          <div class="lake"></div>
+          <div class="nebuta-face">ねぶた<br />L♥VE</div>
+          <div class="dog">🐕‍🦺</div>
+        </div>
+      </section>
+
+      <section class="page highlights-page" id="page-highlights" data-page="1">
+        <div class="page-heading reveal">
+          <p class="eyebrow">Special Plan</p>
+          <h2><span>💎 今回の旅、</span><span>ここが最高</span></h2>
+          <p>料金・移動・お酒ポイントを先に確認。旅のワクワクをカードで見える化したよ。</p>
+        </div>
+        <div class="highlight-grid">
+          <article class="highlight-card reveal">
+            <span class="big-icon">🚄</span>
+            <h3>新幹線が往復なんと1万円！</h3>
+            <p>東京〜新青森の往復をお得にビューン。浮いた分は駅弁と地酒とお土産へ。</p>
+          </article>
+          <article class="highlight-card reveal">
+            <span class="big-icon">🚙</span>
+            <h3>青森駅のタイムズカーシェア</h3>
+            <p>1日目は青森駅周辺で借りて、2日目13:45に返却。返した後はふたりで乾杯できる。</p>
+          </article>
+          <article class="highlight-card reveal">
+            <span class="big-icon">🍶</span>
+            <h3>返却後は地酒モード</h3>
+            <p>ワ・ラッセ後に地酒庵さとう、またはアスパムへ。最後は駅弁食べながら飲むよお。</p>
+          </article>
+        </div>
+        <div class="mini-route reveal" aria-label="旅のルート概要">
+          <span>新青森</span><i></i><span>青森駅</span><i></i><span>奥入瀬</span><i></i><span>十和田湖</span><i></i><span>青森市</span>
+        </div>
+      </section>
+
+      <section class="page itinerary-page" id="page-day1" data-page="2">
+        <div class="page-heading reveal">
+          <p class="eyebrow">Day 1 / 2026.06.13 SAT</p>
+          <h2>🚗 のっけ丼と奥入瀬、夜は湖水まつり</h2>
+          <p>新青森から青森駅へ。海鮮ランチで元気を満タンにして、緑の高原と渓流を抜け、夜は十和田湖のきらめきへ。</p>
+        </div>
+        <div class="timeline" id="day1Timeline"></div>
+      </section>
+
+      <section class="page itinerary-page" id="page-day2" data-page="3">
+        <div class="page-heading reveal">
+          <p class="eyebrow">Day 2 / 2026.06.14 SUN</p>
+          <h2>🚌 アート・歴史・地酒でしめる青森</h2>
+          <p>朝はホテルを出て、縄文とアートを満喫。タイムズカーシェア返却後は、ふたりで地酒乾杯して、駅弁と一緒に東京へ。</p>
+        </div>
+        <div class="timeline" id="day2Timeline"></div>
+      </section>
+
+      <section class="page aomori-map-page" id="page-aomori-map" data-page="4">
+        <div class="page-heading reveal">
+          <p class="eyebrow">Aomori Kawaii Map</p>
+          <h2><span>🗺️ 行くところ＆</span><span>気になる青森MAP</span></h2>
+          <p>国土地理院の標準地図タイルに、今回行く場所はハート付きで重ねたよ。ドラッグで地図を動かして、＋−で拡大縮小できるよ。</p>
+        </div>
+        <div class="aomori-map-wrap reveal">
+          <div class="aomori-map" id="aomoriMap" aria-label="青森旅行のかわいいマップ"></div>
+        </div>
+        <div class="map-legend reveal">
+          <span><i class="pin planned"></i>今回行く</span>
+          <span><i class="pin famous"></i>有名・次回候補</span>
+        </div>
+      </section>
+
+      <section class="page map-page" id="page-links" data-page="5">
+        <div class="page-heading reveal" id="links">
+          <p class="eyebrow">Smart Links & Tips</p>
+          <h2>📍 公式HPリンクと旅のメモ</h2>
+          <p>各スポットの最新営業時間・料金・交通情報は当日までに公式サイトで確認してね。予定は <code>app.js</code> のデータを直せばすぐ更新できる設計。</p>
+        </div>
+        <div class="link-grid" id="linkGrid"></div>
+      </section>
+
+      <nav class="pager" aria-label="ページ移動">
+        <button id="prevPage" aria-label="前のページ">←</button>
+        <div class="dots" id="pageDots"></div>
+        <button id="nextPage" aria-label="次のページ">→</button>
+      </nav>
+    </main>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
